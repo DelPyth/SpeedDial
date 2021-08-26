@@ -1,0 +1,19 @@
+{
+	"name": "SpeedDial",
+	"version": "0.1.0",
+	"description": "A quick shortcut tool using your numpad.",
+	"homepage": "https://www.github.com/DelPyth/SpeedDial#readme",
+	"bugs":
+	{
+		"url": "https://github.com/DelPyth/SpeedDial/issues",
+		"email": "constantjarod@gmail.com"
+	},
+	"license": "GNU General Public License v3.0",
+	"author":
+	{
+		"name": "TopHatCat (Jarod C.)",
+		"email": "constantjarod@gmail.com"
+	},
+	"funding": "https://www.paypal.com/DelPyth",
+	"main": "app.jk"
+}

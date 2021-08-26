@@ -1,0 +1,61 @@
+class Program
+{
+	constructor(...args)
+	{
+		// Get info about this project.
+		this.info = JSON.parse(fileRead(".\\app.json"));
+
+		// Set up dev stuff.
+		this.dev = {};
+		this.dev.debug = true;
+
+		// Create debug function if debug mode is enabled.
+		if (this.dev.debug == true)
+		{
+			this.dev.debug_file = new File(".\\debug.log", "w");
+			this.debug = (text) => this.dev.debug_file.writeLine(text);
+			this.error = (message, type = "ERROR", what = null) => this.debug(`${type}: ${message}${what != null ? "\n\tSpecifically: " + what : ""}`);
+		}
+		else
+		{
+			this.dev.debug_file = null;
+			this.debug = (..._) => null;
+			this.error = (..._) => null;
+		}
+
+		// Get user settings.
+		this.settings = JSON.parse(".\\config\\settings.json");
+
+		// If there's no keybinds found, throw an error.
+		if (this.settings.keys.length < 1)
+		{
+			this.error("Invalid amount of binds", this.settings.keys.length);
+			exitApp(1);
+		}
+
+		// Loop through every keybind the user has set.
+		for (let i = 0; i < this.settings.keys.length; i++)
+		{
+			const element = this.settings.keys[i];
+
+			try
+			{
+				hotkey(element.key, this.ui_action(element.action));
+			}
+			catch (err)
+			{
+				this.error(err.message, err.name, element.key);
+				exitApp(2);
+			}
+
+			this.debug(`Created hotkey: ${element.key}`);
+		}
+
+		// @todo:
+		//	- Append list of combos to key in class.
+		//	- Create UI for both creating, and showing current combo being pressed.
+		//	- Create cancel feature for combo for accidents.
+
+		return this;
+	}
+}

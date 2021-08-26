@@ -1,0 +1,4 @@
+include(".\\lib\\program.jk");
+include(".\\lib\\JSON.jk");
+
+const PROG = new Program(...A_Args);
