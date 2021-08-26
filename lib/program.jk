@@ -58,4 +58,19 @@ class Program
 
 		return this;
 	}
+
+	ui_action(type)
+	{
+		this.error("Not implimented yet", "UnsupportedOperation", arguments.callee.toString());
+		exitApp(3);
+
+		switch (type)
+		{
+			case "create_combo":
+				break;
+			case "start_combo":
+				break;
+		}
+		return null;
+	}
 }
