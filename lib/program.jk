@@ -12,7 +12,7 @@ class Program
 		// Create debug function if debug mode is enabled.
 		if (this.dev.debug == true)
 		{
-			this.dev.debug_file = new File(".\\debug.log", "w");
+			this.dev.debug_file = fileOpen(".\\debug.log", "w");
 			this.debug = (text) => this.dev.debug_file.writeLine(text);
 			this.error = (message, type = "ERROR", what = null) => this.debug(`${type}: ${message}${what != null ? "\n\tSpecifically: " + what : ""}`);
 		}
@@ -40,7 +40,7 @@ class Program
 
 			try
 			{
-				hotkey(element.key, this.ui_action(element.action));
+				hotkey(element.key, this.ui_action.bind(element.action));
 			}
 			catch (err)
 			{
